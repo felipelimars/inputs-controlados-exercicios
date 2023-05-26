@@ -1,32 +1,86 @@
+import { useState } from "react";
 import Cartao from "../Componentes/Cartao";
 import { LayoutDaPagina } from "./estiloDaPaginaDoCartao";
-
-
+import Formulario from "../Componentes/Formulario";
 
 
 function PaginaDoCartao() {
-    //declare os estados aqui
+    const [payment, setPayment] = useState('');
+    const [nameInput, setNameInput] = useState('');
+    const [cardNumberInput, setCardNumberInput] = useState('');
+    const [validityInput, setValidityInput] = useState('');
+    const [cvcInput, setCvcInput] = useState('');
 
+    const handleChangePayment = (event) => {
+        setPayment(event.target.value);
+    };
 
-    //declare as funções de controle de inputs aqui
+    const handleChangeNameInput = (event) => {
+        setNameInput(event.target.value);
+    };
+
+    const handleChangeCardNumberInput = (event) => {
+        setCardNumberInput(event.target.value);
+    };
+
+    const handleChangeValidityInput = (event) => {
+        setValidityInput(event.target.value);
+    };
+
+    const handleChangeCvcInput = (event) => {
+        setCvcInput(event.target.value);
+    };
+
+    const cleanInputValues = (event) => {
+        event.preventDefault();
+        setPayment('');
+        setNameInput('');
+        setCardNumberInput('');
+        setValidityInput('');
+        setCvcInput('');
+        alert('Cartão cadastrado com sucesso!')
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (
+            nameInput.length &&
+            cardNumberInput.length &&
+            validityInput.length &&
+            cvcInput.length
+        ) {
+            console.log(nameInput, cardNumberInput, validityInput, cvcInput);
+        } else {
+            alert('Preencha os campos abaixo');
+        }
+    };
 
     return (
         <LayoutDaPagina>
-            {/* Passe as variáveis de estado para o Cartão. Use Props. */}
             <Cartao
-                pagamento={"Crédito"}
-                numero={"3652 6589 7458 1254"}
-                nome={"Luciano Naganawa"}
-                cvc={"131"}
-                validade={"03/29"}
+                pagamento={payment}
+                numero={cardNumberInput}
+                nome={nameInput}
+                cvc={cvcInput}
+                validade={validityInput}
             />
 
-            {/* Chame o Componente Formulário Aqui */}
-            {/* Passe a função de controle de input e variável de estado para o formulário. Para isso use Props */}
-
-
+            <Formulario
+                handleChangePayment={handleChangePayment}
+                handleChangeNameInput={handleChangeNameInput}
+                handleChangeCardNumberInput={handleChangeCardNumberInput}
+                handleChangeValidityInput={handleChangeValidityInput}
+                handleChangeCvcInput={handleChangeCvcInput}
+                handleSubmit={handleSubmit}
+                cleanInputValues={cleanInputValues}
+                payment={payment}
+                nameInput={nameInput}
+                cardNumberInput={cardNumberInput}
+                validityInput={validityInput}
+                cvcInput={cvcInput}
+            />
         </LayoutDaPagina>
-
     );
 }
 

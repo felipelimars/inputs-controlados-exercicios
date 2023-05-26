@@ -48,3 +48,9 @@ No template existe um componente Cartão com estilização semelhante a imagem a
 - Crie um botão no formulário.
 - Implemente uma função na página do cartão que será executada após o clique do botão. A função deve limpar os inputs e exibir um alerta com a mensagem "Seu cartão foi cadastrado com sucesso!".
 - ⚠️ Remova o comportamento padrão do formulário e evite a atualização automática da página.
+
+
+// 1 - criar um estado pra cada input
+// 2 - criar função onChange que recebe em event como parâmetro e seta o estado do input específico
+// 3 - chamar a função em cada onChange dos inputs
+// 4- chamar o estado no value de cada input
